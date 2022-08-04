@@ -44,6 +44,38 @@ namespace second_api.Models
                         .HasForeignKey(pc => pc.CateId)
                         .HasConstraintName("FK_CATEGORY");
             });
+
+            modelBuilder.Entity<User>(e => {
+                e.ToTable("User");
+                e.HasKey(u => u.Id);
+                e.Property(u => u.UserName).IsRequired().HasMaxLength(100);
+                e.Property(u => u.email).IsRequired().HasMaxLength(100);
+                e.Property(u => u.password).IsRequired().HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<Role>(e => {
+                e.ToTable("Role");
+                e.HasKey(u => u.Id);
+                e.Property(u => u.RoleName).IsRequired().HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<UserRole>(e => {
+                e.ToTable("UserRole");
+                e.HasKey(ur => new { ur.RoleId, ur.UserId });
+
+                e.HasOne(ur => ur.user)
+                    .WithMany(ur => ur.UserRoles)
+                    .HasForeignKey(ur => ur.UserId)
+                    .HasConstraintName("FK_USER");
+
+                e.HasOne(ur => ur.role)
+                    .WithMany(ur => ur.UserRoles)
+                    .HasForeignKey(ur => ur.RoleId)
+                    .HasConstraintName("FK_ROLE");
+
+
+            });
+
         }
 
         public DbSet<Product> products { get; set; }
@@ -51,5 +83,11 @@ namespace second_api.Models
         public DbSet<Category> categories { get; set; }
 
         public DbSet<ProductCategory> productCategories { get; set; }
+
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Role> Roles { set; get; }
+
+        public DbSet<UserRole> UserRoles { get; set; }
      }
 }

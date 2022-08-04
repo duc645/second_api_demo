@@ -26,10 +26,25 @@ namespace second_api.Controllers
         }
 
         [HttpGet("GetProductByCateId")]
-        public List<GetProductDto> GetProductByCateId(int id, float gia)
+        public List<GetProductDto> GetProductByCateId(int id, float gia, int pageIndex = 1, int take = 5)
         {
-            var rs = _productService.GetProductByCateId(id, gia);
+            var rs = _productService.GetProductByCateId(id, gia, pageIndex, take);
             return rs;
+        }
+
+        [HttpPut("updateProduct")]
+        public bool UpdateProduct(List<UpdateProductDto> request)
+        {
+            var rs = _productService.UpdateProduct(request);
+            return rs;
+        }
+
+        [HttpDelete("deleteProduct")]
+        public bool DeleteProduct(List<int> request)
+        {
+            var rs = _productService.DeleteProduct(request);
+            return rs;
+
         }
     }
 }

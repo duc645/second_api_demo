@@ -7,7 +7,7 @@ namespace second_api.Dto.ProductCategory
 {
     public class AddProductCategoryDto
     {
-        public int CateId { get; set; }
+        public string CateId { get; set; }
         public string CategoryName { get; set; }
     }
 }

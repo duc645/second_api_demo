@@ -9,7 +9,7 @@ namespace second_api.Dto.Product
 {
     public class ProductDto
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public double Price { get; set; }
 
         [Required]
@@ -32,5 +32,19 @@ namespace second_api.Dto.Product
         public string ProductName { get; set; }
 
         public int SoLuong { set; get; }
+    }
+
+    public class UpdateProductDto
+    {
+        public int Id { get; set; }
+        public double Price { get; set; }
+
+        [Required]
+        [StringLength(100)]
+
+        public string ProductName { get; set; }
+
+        public int SoLuong { set; get; }
+        public List<AddProductCategoryDto> CategoryId { get; set; }
     }
 }

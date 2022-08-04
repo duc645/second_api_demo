@@ -11,6 +11,10 @@ namespace second_api.Interface
     {
         bool AddProduct(ProductDto request);
 
-        List<GetProductDto> GetProductByCateId(int id, float gia); 
+        List<GetProductDto> GetProductByCateId(int id, float gia, int pageIndex, int take);
+
+        bool UpdateProduct(List<UpdateProductDto> request);
+
+        bool DeleteProduct(List<int> request);
     }
 }
