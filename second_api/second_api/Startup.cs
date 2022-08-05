@@ -42,6 +42,7 @@ namespace second_api
             });
 
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICategoryService, CategoryService>();
 
         }
 
